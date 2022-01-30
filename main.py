@@ -133,12 +133,11 @@ class AngleAnnotation(Arc):
             def R90(a, r, w, h):
                 if a < np.arctan(h/2/(r+w/2)):
                     return np.sqrt((r+w/2)**2 + (np.tan(a)*(r+w/2))**2)
-                else:
-                    c = np.sqrt((w/2)**2+(h/2)**2)
-                    T = np.arcsin(c * np.cos(np.pi/2 - a + np.arcsin(h/2/c))/r)
-                    xy = r * np.array([np.cos(a + T), np.sin(a + T)])
-                    xy += np.array([w/2, h/2])
-                    return np.sqrt(np.sum(xy**2))
+                c = np.sqrt((w/2)**2+(h/2)**2)
+                T = np.arcsin(c * np.cos(np.pi/2 - a + np.arcsin(h/2/c))/r)
+                xy = r * np.array([np.cos(a + T), np.sin(a + T)])
+                xy += np.array([w/2, h/2])
+                return np.sqrt(np.sum(xy**2))
 
             def R(a, r, w, h):
                 aa = (a % (np.pi/4))*((a % (np.pi/2)) <= np.pi/4) + \
